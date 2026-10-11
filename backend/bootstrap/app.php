@@ -1,4 +1,3 @@
-@'
 <?php
 
 use Illuminate\Foundation\Application;
@@ -14,11 +13,12 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->trustProxies(at: '*');
-        $middleware->redirectGuestsTo(fn () => null);
+
+        $middleware->api(prepend: [
+            \Illuminate\Http\Middleware\HandleCors::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->shouldRenderJsonWhen(
-            fn ($request, $e) => $request->is('api/*') || $request->expectsJson()
-        );
+        $exceptions->shouldRenderJsonWhen(fn ($request, $e) => $request->is('api/*') || $request->expectsJson());
     })->create();
-'@ | Set-Content backend\bootstrap\app.php
+

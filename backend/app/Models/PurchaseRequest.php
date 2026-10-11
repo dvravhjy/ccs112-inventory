@@ -25,8 +25,7 @@ class PurchaseRequest extends Model
 
     public static function nextCode(): string
     {
-        $last = static::query()->orderByDesc('id')->first();
-        $lastNumber = $last ? (int) str_replace('PR-', '', $last->code) : 329;
+        $lastNumber = static::query()->pluck('code')->map(fn ($c) => (int) str_replace('PR-', '', $c))->max() ?? 329;
         return 'PR-' . ($lastNumber + 1);
     }
 }

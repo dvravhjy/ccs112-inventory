@@ -140,6 +140,9 @@ class DatabaseSeeder extends Seeder
         Batch::firstOrCreate(['code' => 'B-201'], ['product_id' => $thermostat->id, 'product_label' => $thermostat->name, 'received_date' => '2026-07-01', 'expiry_date' => '2028-07-01', 'qty' => 24]);
         Batch::firstOrCreate(['code' => 'B-301'], ['product_id' => $ac12k->id, 'product_label' => $ac12k->name, 'received_date' => '2026-07-01', 'expiry_date' => '2028-07-01', 'qty' => 10]);
 
+        Batch::firstOrCreate(['code' => 'B-201'], ['product_id' => $thermostat->id, 'product_label' => $thermostat->name, 'received_date' => '2026-07-01', 'expiry_date' => '2028-07-01', 'qty' => 24]);
+        Batch::firstOrCreate(['code' => 'B-301'], ['product_id' => $ac12k->id, 'product_label' => $ac12k->name, 'received_date' => '2026-07-01', 'expiry_date' => '2028-07-01', 'qty' => 10]);
+
         // ---------- Sample stock movements ----------
         if (StockMovement::count() === 0) {
             StockMovement::create(['product_id' => $filter->id,     'product_label' => $filter->name,     'type' => 'received',    'qty' => '+48', 'status' => 'ok',   'user_id' => $staff->id]);

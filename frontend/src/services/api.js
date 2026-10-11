@@ -2,7 +2,7 @@
 // Base URL: set VITE_API_URL in .env (or .env.local)
 //   VITE_API_URL=http://localhost:8000/api
 
-baseURL: import.meta.env.VITE_API_URL || "http://localhost:8000/api",
+const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000/api";
 
 function getToken() {
   return localStorage.getItem("wb_token");
